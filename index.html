@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trishakti Events — Bharati & Rakhi Jha | Spiritual Royal Events, Banaras</title>
+  <meta name="description" content="Trishakti Events — a mother-daughter led, spiritual and royal event company from Banaras. Devotional design, Indian rituals and international execution." />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- particle canvas -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <div class="wrap" role="main">
+    <div class="dev-border" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <!-- ================= HEADER ================= -->
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- use your logo file here -->
+          <img src="logo (2).png" alt="Trishakti Events logo">
+        </div>
+        <div class="titles">
+          <h1>Trishakti Events</h1>
+          <div class="sub">Spiritual • Royal • Devotional — Led by Bharati &amp; Rakhi Jha (Mother &amp; Daughter)</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#packages">Packages</a>
+        <a href="#founders">Founders</a>
+        <a href="#payment">Payment</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- ================= HERO / ABOUT ================= -->
+    <section class="hero-wrap">
+      <section class="hero" id="about">
+        <div class="card">
+          <span class="kicker">Trishakti — Design • Logistics • Devotion</span>
+          <h2>Events that feel like sacred ceremonies — crafted with royal elegance.</h2>
+          <p class="lead">Trishakti Events combines Banaras’ devotional sensibility with polished international production. We design spiritually resonant, visually opulent celebrations — from royal weddings on the ghats to majestic corporate galas.</p>
+
+          <div class="cta">
+            <button class="btn primary" id="consultBtn">
+              <span>Request Consultation</span>
+            </button>
+            <button class="btn ghost" id="viewPackagesBtn">
+              <span>View Packages</span>
+            </button>
+          </div>
+        </div>
+
+        <aside class="card" aria-labelledby="quick-details">
+          <h3 id="quick-details" style="margin-top:0">Quick Details</h3>
+          <p class="muted">Headquarters: Kedar Ghat, Banaras • Operations: Nationwide &amp; Selected International Destinations</p>
+          <p class="muted">Specialties: Royal Weddings • Cultural Rituals • Corporate Galas • Destination Experiences</p>
+
+          <!-- brochure download uses your Brochure.pdf -->
+          <div class="brochure" style="margin-top:12px">
+            <strong style="color:var(--gold-soft)">Company Brochure</strong>
+            <p class="muted">Download our detailed services & packages brochure (PDF).</p>
+            <div style="margin-top:8px">
+              <a class="download" href="Brochure.pdf" id="downloadBrochure" download>
+                <span>⬇</span><span>Download brochure</span>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- ================= SERVICES + IMAGES ================= -->
+      <section id="services" class="section">
+        <h3 style="margin-top:18px;color:var(--gold-soft);">Services &amp; Features</h3>
+        <p class="muted">Complete offerings from concept &amp; ritual design to technical production and guest experience.</p>
+
+        <div class="events">
+          <!-- Royal Banarasi Wedding image -->
+          <article class="event" tabindex="0" role="article" aria-label="Royal Banarasi Wedding">
+            <img src="banarsiwedding.png" alt="Royal Banarasi wedding setup" class="event-image">
+            <h4 style="margin-top:10px;color:var(--ivory-strong);">Royal Banarasi Weddings</h4>
+            <p class="muted">Mandap design, ghat rituals, priest coordination, Banarasi menus, classical music and artisan décor.</p>
+          </article>
+
+          <!-- Corporate Gala image -->
+          <article class="event" tabindex="0" role="article" aria-label="Corporate & Gala">
+            <img src="corporate.png" alt="Corporate gala event" class="event-image">
+            <h4 style="margin-top:10px;color:var(--ivory-strong);">Corporate Galas &amp; Conferences</h4>
+            <p class="muted">LED production, broadcast, hybrid events, simultaneous translation, brand activations and staged experiences.</p>
+          </article>
+
+          <!-- Cultural / Festivals image -->
+          <article class="event" tabindex="0" role="article" aria-label="Festivals">
+            <img src="cuktural.png" alt="Festival and cultural event" class="event-image">
+            <h4 style="margin-top:10px;color:var(--ivory-strong);">Festivals &amp; Cultural Events</h4>
+            <p class="muted">Multi-stage festivals, sponsorship zones, crowd management and artist curation.</p>
+          </article>
+        </div>
+
+        <div style="margin-top:12px" class="card">
+          <h4 style="color:var(--gold-soft);">Feature Matrix — What we provide</h4>
+          <ul class="muted">
+            <li><strong>Design:</strong> Mandaps, floral chandeliers, lotus motifs, projection mapping and sacred geometry patterns.</li>
+            <li><strong>Food:</strong> Regional Banarasi counters, royal thalis, international chefs, sattvic &amp; dietary menus.</li>
+            <li><strong>Music:</strong> Shehnai, classical ensembles, DJs, live bands, synchronized musical-fireworks shows (permit dependent).</li>
+            <li><strong>AV &amp; Electronics:</strong> LED walls, line arrays, moving heads, DMX lighting, broadcast encoders, drone footage (permits required).</li>
+            <li><strong>Logistics:</strong> Permits, guest travel, accommodation blocks, security, medical, VIP liaison and local cultural advisors.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================= PACKAGES ================= -->
+      <section id="packages" class="section">
+        <h3 style="margin-top:18px;color:var(--gold-soft);">Packages</h3>
+        <div class="packages">
+          <div class="pkg" tabindex="0">
+            <div class="tag">Royal</div>
+            <h4 style="color:var(--ivory-strong);">Luxury Royal</h4>
+            <p class="muted">Palace venues, multi-day rituals, international cuisine, film crews &amp; celebrity performers.</p>
+          </div>
+          <div class="pkg" tabindex="0">
+            <div class="tag">Popular</div>
+            <h4 style="color:var(--ivory-strong);">Premium</h4>
+            <p class="muted">Designer décor, premium catering, AV, and event director on-site.</p>
+          </div>
+          <div class="pkg" tabindex="0">
+            <div class="tag">Partner</div>
+            <h4 style="color:var(--ivory-strong);">Standard (Partner)</h4>
+            <p class="muted">Local partner-led packages with Trishakti oversight for intimate ceremonies.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FOUNDERS ================= -->
+      <section id="founders" class="section">
+        <h3 style="margin-top:18px;color:var(--gold-soft);">Founders — Mother &amp; Daughter Leadership</h3>
+        <div class="founders">
+          <div class="founder-card">
+            <div class="founder">
+              <div class="portrait" aria-hidden="true">BJ</div>
+              <div>
+                <h4 style="margin-bottom:4px;color:var(--ivory-strong);">Bharati Jha — Co-Founder (Mother)</h4>
+                <p class="muted">A cultural curator and ritual specialist from Banaras, Bharati brings three decades of experience in traditional ceremonies, temple arts and community liaison. Her deep local networks ensure ritual authenticity and seamless ghat permissions.</p>
+              </div>
+            </div>
+
+            <div style="margin-top:12px">
+              <h4 style="margin-bottom:6px;color:var(--gold-soft);">Bharati's Focus</h4>
+              <ul class="muted">
+                <li>Ritual accuracy &amp; priest collaboration</li>
+                <li>Local artisan curation</li>
+                <li>Community &amp; cultural liaison</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="founder-card">
+            <div class="founder">
+              <div class="portrait" aria-hidden="true">RJ</div>
+              <div>
+                <h4 style="margin-bottom:4px;color:var(--ivory-strong);">Rakhi Jha — Co-Founder &amp; CEO (Daughter)</h4>
+                <p class="muted">Rakhi leads production, international client relations and technology integration. Trained in event management and modern production, she blends global standards with her mother's cultural wisdom to create memorable, secure and scalable events.</p>
+              </div>
+            </div>
+
+            <div style="margin-top:12px">
+              <h4 style="margin-bottom:6px;color:var(--gold-soft);">Rakhi's Focus</h4>
+              <ul class="muted">
+                <li>Production &amp; AV</li>
+                <li>International logistics</li>
+                <li>Digital marketing &amp; client relations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PAYMENT (LIVE-READY) ================= -->
+<section id="payment" class="section payment-section">
+  <h3 style="margin-top:22px;color:var(--gold-soft);">Secure Advance Booking</h3>
+  <p class="muted">
+    Block your date with a safe, online advance payment. All transactions are processed
+    through trusted payment gateways (Razorpay / Stripe / Bank UPI). Your card details
+    are never stored on our servers.
+  </p>
+
+  <div class="payment-grid">
+    <!-- LEFT: BOOKING FORM -->
+    <div class="card payment-left">
+      <div class="payment-badge">
+        <span>🔒</span><span>100% Secure Checkout</span>
+      </div>
+
+      <p class="payment-warning">
+        For your safety, Trishakti Events does not store card or UPI details. You will
+        be redirected to our certified payment partner to complete the transaction.
+      </p>
+
+      <form id="paymentForm" style="margin-top:14px;">
+        <label for="payerName">Full name</label>
+        <input id="payerName" name="payerName" type="text" required placeholder="Riya Sharma">
+
+        <label for="payerEmail" style="margin-top:10px;">Email</label>
+        <input id="payerEmail" name="payerEmail" type="email" required placeholder="you@example.com">
+
+        <label for="payerPhone" style="margin-top:10px;">WhatsApp / Mobile</label>
+        <input id="payerPhone" name="payerPhone" type="tel" required placeholder="+91-98XXXXXXXX">
+
+        <label for="package" style="margin-top:10px;">Package</label>
+        <select id="package" name="package" required>
+          <option value="royal">Luxury Royal</option>
+          <option value="premium">Premium Banarasi Heritage</option>
+          <option value="standard">Standard (Partner)</option>
+        </select>
+
+        <label for="eventDate" style="margin-top:10px;">Event date</label>
+        <input id="eventDate" name="eventDate" type="date" required>
+
+        <label for="amount" style="margin-top:10px;">Advance Amount (₹)</label>
+        <input id="amount" name="amount" type="number" min="1000" step="500" required placeholder="50000">
+
+        <div style="margin-top:18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <!-- Important: type="button" so JS (Razorpay/Stripe) can handle it -->
+          <button class="btn primary" type="button" id="payNowButton">
+            <span>Pay Securely &amp; Block Date</span>
+          </button>
+          <span class="muted" style="font-size:0.8rem;">
+            UPI • Cards • Netbanking • Wallets supported via our payment partner.
+          </span>
+        </div>
+      </form>
+    </div>
+
+    <!-- RIGHT: TRUST & INFO -->
+    <div class="payment-right">
+      <div class="card" style="height:100%;">
+        <h4 style="margin-top:0;color:var(--gold-soft);">What happens after you pay?</h4>
+        <ol class="muted" style="font-size:0.85rem;padding-left:18px;">
+          <li>You are redirected to our secure payment partner (Razorpay / Stripe).</li>
+          <li>You complete the payment using UPI, card, netbanking or wallet.</li>
+          <li>Once successful, your booking is logged in our system with a unique ID.</li>
+          <li>You receive a confirmation on email / WhatsApp with all booking details.</li>
+          <li>Our team contacts you within 24 hours to discuss finer details of your event.</li>
+        </ol>
+        <p class="muted" style="margin-top:8px;font-size:0.8rem;">
+          We use PCI-DSS compliant gateways. Your card and UPI information never touches
+          our website, database, Google Sheets or email.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      <!-- ================= CONTACT ================= -->
+      <section id="contact" class="section">
+        <h3 style="margin-top:22px;color:var(--gold-soft);">Contact &amp; Request a Proposal</h3>
+        <div class="card" style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap">
+          <form style="flex:1;min-width:260px" id="leadForm">
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" required placeholder="Client name">
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com">
+
+            <label for="type">Event type</label>
+            <select id="type" name="type">
+              <option>Royal Wedding</option>
+              <option>Corporate</option>
+              <option>Festival</option>
+              <option>Small Ceremony</option>
+              <option>Destination</option>
+            </select>
+
+            <label for="message">Short description</label>
+            <textarea id="message" name="message" rows="4" placeholder="Date, guests, location, special requests"></textarea>
+
+            <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="btn primary" type="submit">Request Proposal</button>
+              <button class="btn ghost" type="button" id="attachBrochure">Attach Brochure</button>
+            </div>
+          </form>
+
+          <div style="width:320px;min-width:260px">
+            <h4 style="margin-top:0;color:var(--gold-soft);">Office</h4>
+            <p class="muted">Kedar Ghat, Banaras (Varanasi)</p>
+            <p class="muted">Email: hello@trishakti.events</p>
+            <p class="muted">Phone: +91 70000 00000</p>
+
+            <div style="margin-top:12px">
+              <strong style="color:var(--ivory-strong);">Why Trishakti</strong>
+              <p class="muted">Mother-daughter leadership combining ritual authenticity with international-grade production — the best of both worlds for clients who want devotion and grandeur.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FOOTER ================= -->
+      <footer style="margin-top:18px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <div class="muted">© Trishakti Events — Bharati &amp; Rakhi Jha • Banaras (Varanasi)</div>
+          <div class="muted">Made with devotion • Contact: hello@trishakti.events</div>
+        </div>
+      </footer>
+    </section>
+  </div>
+
+  <!-- Assistant toggle -->
+  <button class="assistant-toggle" id="assistantToggle" aria-label="Open assistant" title="Ask Trishakti Assistant (Alt + A)">
+    <span>✦</span>
+  </button>
+
+  <!-- Assistant panel -->
+  <div class="assistant-panel" id="assistantPanel" style="display:none" role="dialog" aria-modal="false" aria-label="Trishakti Assistant">
+    <div class="assistant-header">
+      <div class="assistant-badge">AI</div>
+      <div style="flex:1">
+        <h4>Trishakti Assistant</h4>
+        <div style="font-size:0.85rem;color:var(--muted);">Ask about services, rituals, venue tips — or just say hello.</div>
+      </div>
+      <button id="assistantClose" aria-label="Close assistant" style="background:transparent;border:0;color:var(--muted);cursor:pointer;font-size:1rem;">✕</button>
+    </div>
+
+    <div class="assistant-body" id="assistantBody" aria-live="polite"></div>
+
+    <div class="assistant-controls">
+      <input id="assistantInput" type="text" placeholder="Type your question..." aria-label="Assistant question" style="flex:1">
+      <button class="mic-btn" id="micBtn" title="Use microphone (Alt + M)">🎙</button>
+      <button class="btn primary" id="askBtn" type="button">Ask</button>
+    </div>
+
+    <div style="font-size:0.8rem;color:var(--muted);margin-top:6px">
+      Tip: Press <strong>Alt + A</strong> to open assistant, <strong>Alt + M</strong> to start/stop microphone.
+    </div>
+  </div>
+
+  <!-- Main JS -->
+  <script src="script.js"></script>
+</body>
+</html>
