@@ -1,6 +1,6 @@
-/*******************
- * Utilities: sound
- *******************/
+// ===============
+// SOUND UTILITIES
+// ===============
 const audioCtx = (typeof AudioContext !== 'undefined') ? new AudioContext() : null;
 
 function playClick() {
@@ -25,17 +25,35 @@ try {
   audioEnabled = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 } catch(e){}
 
-const soundButtons = [
+function smoothScrollTo(selector) {
+  const el = document.querySelector(selector);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ===============
+// DOM REFERENCES
+// ===============
+const consultBtn = document.getElementById('consultBtn');
+const viewPackagesBtn = document.getElementById('viewPackagesBtn');
+const downloadBrochure = document.getElementById('downloadBrochure');
+const attachBrochure = document.getElementById('attachBrochure');
+
+// ===============
+// CLICK SOUNDS
+// ===============
+[
   'consultBtn',
   'viewPackagesBtn',
   'downloadBrochure',
   'attachBrochure',
   'askBtn',
-  'paymentForm'
-];
-soundButtons.forEach(id=>{
+  'payNowButton',
+  'plannerForm',
+  'copyPlanBtn',
+  'usePlanInFormBtn'
+].forEach(id => {
   const el = document.getElementById(id);
-  if(el) el.addEventListener('click', ()=>{ if(audioEnabled) playClick(); });
+  if (el) el.addEventListener('click', () => { if (audioEnabled) playClick(); });
 });
 
 window.addEventListener('keydown', (ev)=>{
@@ -43,9 +61,25 @@ window.addEventListener('keydown', (ev)=>{
   if (ev.altKey && ev.key.toLowerCase()==='m'){ toggleMic(); ev.preventDefault(); }
 });
 
-/*******************
- * Local lead capture
- *******************/
+// Hero buttons
+consultBtn?.addEventListener('click', ()=> smoothScrollTo('#planner'));
+viewPackagesBtn?.addEventListener('click', ()=> smoothScrollTo('#packages'));
+
+// Attach brochure note
+attachBrochure?.addEventListener('click', () => {
+  const msg = document.getElementById('message');
+  if (!msg) return;
+  const note = '\n\nAttached: Trishakti services & packages brochure.';
+  if (!msg.value.includes('Attached: Trishakti')) {
+    msg.value += note;
+  }
+  if (audioEnabled) playClick();
+  msg.focus();
+});
+
+// ===============
+// LOCAL LEAD CAPTURE
+// ===============
 const leadForm = document.getElementById('leadForm');
 leadForm?.addEventListener('submit', (e)=> {
   e.preventDefault();
@@ -60,37 +94,133 @@ leadForm?.addEventListener('submit', (e)=> {
   l.push(d);
   localStorage.setItem('trishakti_leads', JSON.stringify(l));
   if(audioEnabled) playClick();
-  alert('Thanks '+(d.name||'friend')+' — request saved. We will contact you soon.');
+  alert('Thanks '+(d.name||'friend')+' — your request is saved locally for this demo.');
   e.target.reset();
 });
 
-/*******************
- * Payment form (DEMO)
- *******************/
+// ===============
+// PAYMENT FORM (DEMO)
+// ===============
 const paymentForm = document.getElementById('paymentForm');
 paymentForm?.addEventListener('submit',(e)=>{
   e.preventDefault();
   const amount = e.target.amount.value || '0';
   const pkg = e.target.package.value;
   if(audioEnabled) playClick();
-  alert('Demo payment successful for ₹'+amount+
-        ' ('+pkg+' package). In a real site, this would be processed by Stripe/Razorpay on your server.');
+  alert('Demo payment: ₹'+amount+
+        ' for '+pkg+' package. In a real live site, this would open Razorpay/Stripe secure checkout.');
   e.target.reset();
 });
 
-/*******************
- * Assistant: speech & transcription
- *******************/
+// ===============
+// PACKAGES -> PAYMENT SHORTCUT
+// ===============
+const packageCards = document.querySelectorAll('.pkg');
+const paymentPackageSelect = document.getElementById('package');
+
+packageCards.forEach((card)=>{
+  card.addEventListener('click', ()=>{
+    const tag = card.querySelector('.tag');
+    if(tag && paymentPackageSelect){
+      const label = (tag.textContent || '').toLowerCase();
+      if(label.includes('royal')) paymentPackageSelect.value = 'royal';
+      else if(label.includes('popular')) paymentPackageSelect.value = 'premium';
+      else if(label.includes('partner')) paymentPackageSelect.value = 'standard';
+    }
+    smoothScrollTo('#payment');
+    if(audioEnabled) playClick();
+  });
+});
+
+// ===============
+// PLANNER LOGIC
+// ===============
+const plannerForm = document.getElementById('plannerForm');
+const plannerScrollToContact = document.getElementById('plannerScrollToContact');
+const planSummaryCard = document.getElementById('planSummaryCard');
+const planSummaryText = document.getElementById('planSummaryText');
+const copyPlanBtn = document.getElementById('copyPlanBtn');
+const usePlanInFormBtn = document.getElementById('usePlanInFormBtn');
+
+plannerForm?.addEventListener('submit', (e)=>{
+  e.preventDefault();
+
+  const eventType = document.getElementById('plannerEventType').value;
+  const guests = document.getElementById('plannerGuests').value;
+  const budget = document.getElementById('plannerBudget').value;
+
+  const menu = Array.from(
+    plannerForm.querySelectorAll('input[name="menu"]:checked')
+  ).map(c=>c.value);
+
+  const themeInput = plannerForm.querySelector('input[name="theme"]:checked');
+  const theme = themeInput ? themeInput.value : 'Not selected';
+
+  const addons = Array.from(
+    plannerForm.querySelectorAll('input[name="addons"]:checked')
+  ).map(c=>c.value);
+
+  const summaryLines = [
+    `Event Type: ${eventType}`,
+    `Guests: ${guests}`,
+    `Menu Preferences: ${menu.length ? menu.join(', ') : 'Not specified'}`,
+    `Setup & Theme: ${theme}`,
+    `Premium Experiences: ${addons.length ? addons.join(', ') : 'None selected'}`,
+    `Budget Mood: ${budget}`,
+    '',
+    'Notes for Trishakti Team:',
+    '- Please review this plan and suggest venues, decor options and an estimated budget range.'
+  ];
+
+  const summary = summaryLines.join('\n');
+  if (planSummaryText) planSummaryText.textContent = summary;
+  if (planSummaryCard) planSummaryCard.style.display = 'block';
+
+  const contactMessage = document.getElementById('message');
+  if (contactMessage && !contactMessage.value) contactMessage.value = summary;
+
+  if (audioEnabled) playClick();
+});
+
+plannerScrollToContact?.addEventListener('click', ()=>{
+  smoothScrollTo('#contact');
+  if(audioEnabled) playClick();
+});
+
+copyPlanBtn?.addEventListener('click', async ()=>{
+  if (!planSummaryText) return;
+  try{
+    await navigator.clipboard.writeText(planSummaryText.textContent || '');
+    alert('Plan copied! You can paste it into WhatsApp, email, etc.');
+  }catch(e){
+    alert('Could not copy automatically. Please select and copy manually.');
+  }
+  if(audioEnabled) playClick();
+});
+
+usePlanInFormBtn?.addEventListener('click', ()=>{
+  const contactMessage = document.getElementById('message');
+  if (contactMessage && planSummaryText){
+    contactMessage.value = planSummaryText.textContent || '';
+    smoothScrollTo('#contact');
+  }
+  if(audioEnabled) playClick();
+});
+
+// ===============
+// ASSISTANT: speech & AI responder
+// ===============
 const assistantToggle = document.getElementById('assistantToggle');
-const assistantPanel = document.getElementById('assistantPanel');
-const assistantClose = document.getElementById('assistantClose');
-const assistantInput = document.getElementById('assistantInput');
-const assistantBody = document.getElementById('assistantBody');
-const askBtn = document.getElementById('askBtn');
-const micBtn = document.getElementById('micBtn');
+const assistantPanel  = document.getElementById('assistantPanel');
+const assistantClose  = document.getElementById('assistantClose');
+const assistantInput  = document.getElementById('assistantInput');
+const assistantBody   = document.getElementById('assistantBody');
+const askBtn          = document.getElementById('askBtn');
+const micBtn          = document.getElementById('micBtn');
 
 let recognizing = false;
 let recognition = null;
+
 if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   recognition = new SR();
@@ -109,84 +239,138 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
   micBtn.title = 'Microphone not available in this browser';
 }
 
+function openAssistant(){
+  if(!assistantPanel) return;
+  assistantPanel.style.display = 'flex';
+  assistantToggle?.setAttribute('aria-pressed','true');
+  assistantInput?.focus();
+}
+function closeAssistant(){
+  if(!assistantPanel) return;
+  assistantPanel.style.display = 'none';
+  assistantToggle?.setAttribute('aria-pressed','false');
+}
 function toggleAssistant(){
-  const open = assistantPanel.style.display !== 'none';
-  if(open){
-    assistantPanel.style.display = 'none';
-    assistantToggle.setAttribute('aria-pressed','false');
-  } else {
-    assistantPanel.style.display = 'flex';
-    assistantToggle.setAttribute('aria-pressed','true');
-    assistantInput.focus();
-  }
+  const open = assistantPanel && assistantPanel.style.display !== 'none';
+  if(open) closeAssistant(); else openAssistant();
   if(audioEnabled) playClick();
 }
 assistantToggle?.addEventListener('click', toggleAssistant);
 assistantClose?.addEventListener('click', toggleAssistant);
 
+// text-to-speech
 function speakText(text){
   if (!('speechSynthesis' in window)) return;
   const utter = new SpeechSynthesisUtterance(text);
   utter.lang = 'en-IN';
   const voices = speechSynthesis.getVoices();
   if(voices.length) utter.voice = voices.find(v=>/en.*(India|UK|US)/i.test(v.name)) || voices[0];
-  utter.rate = 0.95;
+  utter.rate = 0.98;
   utter.pitch = 1;
   speechSynthesis.cancel();
   speechSynthesis.speak(utter);
 }
 
+// assistant bubbles
 function appendAssistantMessage(who, text){
+  if(!assistantBody) return;
   const div = document.createElement('div');
-  div.style.marginBottom = '8px';
-  div.innerHTML = `<strong style="color:${who==='assistant'?'var(--gold-soft)':'var(--saffron)'}">${who==='assistant'?'Assistant':'You'}:</strong> <span style="color:var(--ivory)">${escapeHtml(text)}</span>`;
+  div.classList.add('assistant-msg');
+  div.classList.add(who === 'assistant' ? 'assistant-msg-assistant' : 'assistant-msg-user');
+  div.textContent = text;
   assistantBody.appendChild(div);
   assistantBody.scrollTop = assistantBody.scrollHeight;
 }
 
-function escapeHtml(s){
-  return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
-}
-
 function fallbackResponder(query){
   const q = query.toLowerCase();
-  if(/price|cost|package|rate|how much/.test(q)) return "Our packages range from Standard partner options to Luxury Royal multi-day experiences. Share your date, guest count and preferred package and we'll estimate your budget.";
-  if(/wedding|mandap|ritual/.test(q)) return "We design ritual-accurate mandaps and coordinate ghat rituals with priests and local artisans. For wedding planning we recommend booking at least 6–9 months in advance for peak dates.";
-  if(/music|shehnai|band/.test(q)) return "We offer classical ensembles (shehnai, tabla), fusion bands and DJs. Tell me your mood and I'll suggest a line-up style.";
-  if(/covid|safety|security|permit/.test(q)) return "We handle permits, crowd management and medical/security liaisons. For ghat events, permissions and community liaison are led by founder Bharati.";
-  if(/hello|hi|namaste|hey/.test(q)) return "Namaste! I'm Trishakti Assistant — ask me about packages, rituals, venues, or request a consultation.";
-  return `Thank you for your question: "${query}". Share your date, guest count and city for a more detailed, personalized response.`;
+  if(/price|cost|package|rate|how much|budget/.test(q))
+    return 'Our pricing depends on guests, venue city and experience level (Standard, Premium or Luxury Royal). Share your date, guest count and city, and we suggest an approximate range.';
+  if(/wedding|mandap|ritual|phera|shaadi/.test(q))
+    return 'For weddings, we start with your guest count, rituals, venue mood (palace, ghat, temple) and budget mood. Then we design mandap, decor, food and premium experiences around it.';
+  if(/music|shehnai|band|dj|sound/.test(q))
+    return 'We offer classical shehnai, light classical, fusion bands and DJs. You can mix live shehnai for rituals with DJ/band for sangeet and reception.';
+  if(/venue|banaras|varanasi|ghat|palace/.test(q))
+    return 'In Banaras we specialise in ghat-side rituals, heritage venues and palace-style banquet settings. For outstation venues we coordinate with your chosen property or suggest partners.';
+  if(/hello|hi|namaste|hey/.test(q))
+    return 'Namaste! I am Trishakti AI Assistant. Ask me anything about weddings, rituals, decor, venues, pricing, or planning your event.';
+  if(/payment|advance|upi|card|razorpay|stripe/.test(q))
+    return 'Advance can be made through UPI, cards or netbanking via secure gateways like Razorpay/Stripe. Your card/UPI details are handled only by the payment partner, not stored on our site.';
+  return `Thank you for your question: "${query}". Give me your event type, date, guest count and city, and I can guide you step-by-step.`;
 }
 
-async function sendToAPI(query){
-  // connect this to your own backend API later
-  return null;
+// OPTIONAL: real OpenAI API (fill key to use)
+const OPENAI_API_KEY = ""; // put your key here if you want real AI
+
+async function generateAIResponse(query) {
+  if (!OPENAI_API_KEY) return null;
+  try{
+    const systemPrompt = `You are TRISHAKTI EVENT AI ASSISTANT. 
+You help Indian clients plan weddings, festivals and corporate events with a devotional, royal and professional tone.
+Always keep answers practical and specific, and if relevant, invite them to share: date, city, guest count and budget mood.
+`;
+    const resp = await fetch("https://api.openai.com/v1/chat/completions", {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":`Bearer ${OPENAI_API_KEY}`
+      },
+      body:JSON.stringify({
+        model:"gpt-4o-mini",
+        messages:[
+          {role:"system", content:systemPrompt},
+          {role:"user", content:query}
+        ]
+      })
+    });
+    const data = await resp.json();
+    return data.choices?.[0]?.message?.content || null;
+  }catch(err){
+    console.warn('AI error', err);
+    return null;
+  }
 }
 
-async function handleAsk(text){
+async function handleAsk(rawText){
+  const text = (rawText || assistantInput?.value || '').trim();
   if(!text) return;
   appendAssistantMessage('user', text);
-  assistantInput.value = '';
-  appendAssistantMessage('assistant', 'Thinking...');
+  if(assistantInput) assistantInput.value = '';
+
+  const thinkingMsg = 'Thinking about the best options for your event...';
+  appendAssistantMessage('assistant', thinkingMsg);
+
   if(audioEnabled) playClick();
 
-  const apiResp = await sendToAPI(text);
-  let answer = apiResp || fallbackResponder(text);
+  let answer = await generateAIResponse(text);
+  if(!answer) answer = fallbackResponder(text);
 
-  const last = assistantBody.querySelector('div:last-child');
-  if(last) last.remove();
-  appendAssistantMessage('assistant', answer);
+  // replace last assistant message
+  const bubbles = assistantBody?.querySelectorAll('.assistant-msg-assistant');
+  if(bubbles && bubbles.length){
+    const last = bubbles[bubbles.length - 1];
+    last.textContent = answer;
+  }else{
+    appendAssistantMessage('assistant', answer);
+  }
+
   speakText(answer);
 }
 
-askBtn?.addEventListener('click', ()=> { handleAsk(assistantInput.value.trim()); });
-assistantInput?.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter'){ ev.preventDefault(); handleAsk(assistantInput.value.trim()); } });
+askBtn?.addEventListener('click', ()=> handleAsk());
+assistantInput?.addEventListener('keydown', (ev)=>{
+  if(ev.key === 'Enter'){
+    ev.preventDefault();
+    handleAsk();
+  }
+});
 
 function updateMicUI(){
   if(!micBtn) return;
   micBtn.textContent = recognizing ? '⏺' : '🎙';
-  micBtn.style.borderColor = recognizing ? 'rgba(255,120,120,0.9)' : 'rgba(255,255,255,0.16)';
+  micBtn.dataset.active = recognizing ? 'true' : 'false';
 }
+
 function toggleMic(){
   if(!recognition) return;
   if(recognizing){
@@ -204,15 +388,16 @@ function toggleMic(){
     recognizing=false;
     updateMicUI();
   }
+  if(audioEnabled) playClick();
 }
 micBtn?.addEventListener('click', toggleMic);
 
 window.toggleMic = toggleMic;
 window.toggleAssistant = toggleAssistant;
 
-/*******************
- * Particle canvas (golden lotus petals)
- *******************/
+// ===============
+// PARTICLE CANVAS (lotus petals)
+// ===============
 (function(){
   const canvas = document.getElementById('particle-canvas');
   if(!canvas) return;
@@ -272,26 +457,20 @@ window.toggleAssistant = toggleAssistant;
   addEventListener('resize', ()=>{ w=canvas.width=innerWidth; h=canvas.height=innerHeight; });
 })();
 
-/*******************
- * Accessibility: focus outlines
- *******************/
+// ===============
+// ACCESSIBILITY + MICRO-INTERACTIONS
+// ===============
 document.addEventListener('keydown', (e)=> {
   if (e.key === 'Tab') document.documentElement.classList.add('show-focus');
+  if(e.key==='Escape' && assistantPanel){
+    assistantPanel.style.display='none';
+  }
 });
 
-/*******************
- * Micro-interactions
- *******************/
 document.querySelectorAll('.event, .pkg, .founder-card').forEach(el=>{
   el.addEventListener('click', ()=>{
     if(audioEnabled) playClick();
     el.style.transform = 'translateY(-6px) scale(1.01)';
     setTimeout(()=> el.style.transform = '', 260);
   });
-});
-
-document.addEventListener('keydown', (e)=> {
-  if(e.key==='Escape' && assistantPanel){
-    assistantPanel.style.display='none';
-  }
 });
