@@ -24,7 +24,6 @@
     <header>
       <div class="brand">
         <div class="logo" aria-hidden="true">
-          <!-- use your logo file here -->
           <img src="logo (2).png" alt="Trishakti Events logo">
         </div>
         <div class="titles">
@@ -37,6 +36,7 @@
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#packages">Packages</a>
+        <a href="#planner">Plan Event</a>
         <a href="#founders">Founders</a>
         <a href="#payment">Payment</a>
         <a href="#contact">Contact</a>
@@ -53,7 +53,7 @@
 
           <div class="cta">
             <button class="btn primary" id="consultBtn">
-              <span>Request Consultation</span>
+              <span>Plan My Event</span>
             </button>
             <button class="btn ghost" id="viewPackagesBtn">
               <span>View Packages</span>
@@ -66,10 +66,9 @@
           <p class="muted">Headquarters: Kedar Ghat, Banaras • Operations: Nationwide &amp; Selected International Destinations</p>
           <p class="muted">Specialties: Royal Weddings • Cultural Rituals • Corporate Galas • Destination Experiences</p>
 
-          <!-- brochure download uses your Brochure.pdf -->
           <div class="brochure" style="margin-top:12px">
             <strong style="color:var(--gold-soft)">Company Brochure</strong>
-            <p class="muted">Download our detailed services & packages brochure (PDF).</p>
+            <p class="muted">Download our detailed services &amp; packages brochure (PDF).</p>
             <div style="margin-top:8px">
               <a class="download" href="Brochure.pdf" id="downloadBrochure" download>
                 <span>⬇</span><span>Download brochure</span>
@@ -85,21 +84,18 @@
         <p class="muted">Complete offerings from concept &amp; ritual design to technical production and guest experience.</p>
 
         <div class="events">
-          <!-- Royal Banarasi Wedding image -->
           <article class="event" tabindex="0" role="article" aria-label="Royal Banarasi Wedding">
             <img src="banarsiwedding.png" alt="Royal Banarasi wedding setup" class="event-image">
             <h4 style="margin-top:10px;color:var(--ivory-strong);">Royal Banarasi Weddings</h4>
             <p class="muted">Mandap design, ghat rituals, priest coordination, Banarasi menus, classical music and artisan décor.</p>
           </article>
 
-          <!-- Corporate Gala image -->
           <article class="event" tabindex="0" role="article" aria-label="Corporate & Gala">
             <img src="corporate.png" alt="Corporate gala event" class="event-image">
             <h4 style="margin-top:10px;color:var(--ivory-strong);">Corporate Galas &amp; Conferences</h4>
             <p class="muted">LED production, broadcast, hybrid events, simultaneous translation, brand activations and staged experiences.</p>
           </article>
 
-          <!-- Cultural / Festivals image -->
           <article class="event" tabindex="0" role="article" aria-label="Festivals">
             <img src="cuktural.png" alt="Festival and cultural event" class="event-image">
             <h4 style="margin-top:10px;color:var(--ivory-strong);">Festivals &amp; Cultural Events</h4>
@@ -138,6 +134,93 @@
             <h4 style="color:var(--ivory-strong);">Standard (Partner)</h4>
             <p class="muted">Local partner-led packages with Trishakti oversight for intimate ceremonies.</p>
           </div>
+        </div>
+      </section>
+
+      <!-- ================= PLANNER / CUSTOMIZER ================= -->
+      <section id="planner" class="section">
+        <h3 style="margin-top:22px;color:var(--gold-soft);">Plan Your Sacred Celebration</h3>
+        <p class="muted">
+          Build your own event in a few clicks — choose guests, menu, setup and premium experiences.
+          We use this plan to design a custom proposal for you.
+        </p>
+
+        <div class="card" style="margin-top:10px;">
+          <form id="plannerForm">
+            <label for="plannerEventType">Event type</label>
+            <select id="plannerEventType" name="plannerEventType" required>
+              <option value="Royal Wedding">Royal Wedding</option>
+              <option value="Destination Wedding">Destination Wedding</option>
+              <option value="Festival / Cultural Event">Festival / Cultural Event</option>
+              <option value="Corporate Gala / Conference">Corporate Gala / Conference</option>
+              <option value="Small Ritual Ceremony">Small Ritual Ceremony</option>
+            </select>
+
+            <label for="plannerGuests" style="margin-top:10px;">Number of guests</label>
+            <select id="plannerGuests" name="plannerGuests" required>
+              <option value="0–50 (intimate)">0–50 (intimate)</option>
+              <option value="50–200 (family scale)">50–200 (family scale)</option>
+              <option value="200–500 (large celebration)">200–500 (large celebration)</option>
+              <option value="500–2000+ (royal level)">500–2000+ (royal level)</option>
+            </select>
+
+            <label style="margin-top:10px;">Menu preferences</label>
+            <div class="muted planner-choices">
+              <label><input type="checkbox" name="menu" value="Pure Veg"> Pure Veg</label>
+              <label><input type="checkbox" name="menu" value="Veg + Non-veg"> Veg + Non-veg</label>
+              <label><input type="checkbox" name="menu" value="Satvik / Ritual Feast"> Satvik / Ritual Feast</label>
+              <label><input type="checkbox" name="menu" value="International Buffet"> International Buffet</label>
+              <label><input type="checkbox" name="menu" value="Custom Menu"> Custom Menu</label>
+            </div>
+
+            <label style="margin-top:10px;">Setup &amp; theme</label>
+            <div class="muted planner-choices">
+              <label><input type="radio" name="theme" value="Traditional Temple Style" required> Traditional Temple Style</label>
+              <label><input type="radio" name="theme" value="Royal Golden Palace"> Royal Golden Palace</label>
+              <label><input type="radio" name="theme" value="Banarasi Ghat Mandap"> Banarasi Ghat Mandap</label>
+              <label><input type="radio" name="theme" value="Modern Premium Decor"> Modern Premium Decor</label>
+              <label><input type="radio" name="theme" value="Fully Custom Concept"> Fully Custom Concept</label>
+            </div>
+
+            <label style="margin-top:10px;">Premium experiences</label>
+            <div class="muted planner-choices">
+              <label><input type="checkbox" name="addons" value="Live Shehnai / Classical Music"> Live Shehnai / Classical Music</label>
+              <label><input type="checkbox" name="addons" value="Vedic Pandits & Ritual Management"> Vedic Pandits &amp; Ritual Management</label>
+              <label><input type="checkbox" name="addons" value="Luxury Guest Hospitality"> Luxury Guest Hospitality</label>
+              <label><input type="checkbox" name="addons" value="Fireworks / Flower Showers (subject to permits)"> Fireworks / Flower Showers</label>
+              <label><input type="checkbox" name="addons" value="Pre-wedding Festivities & Photoshoot"> Pre-wedding Festivities &amp; Photoshoot</label>
+            </div>
+
+            <label for="plannerBudget" style="margin-top:10px;">Budget mood (approx.)</label>
+            <select id="plannerBudget" name="plannerBudget" required>
+              <option value="Standard – value-focused but elegant">Standard – value-focused but elegant</option>
+              <option value="Premium – detailed decor & experiences">Premium – detailed decor &amp; experiences</option>
+              <option value="Luxury Royal – no-compromise experience">Luxury Royal – no-compromise experience</option>
+            </select>
+
+            <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+              <button type="submit" class="btn primary">
+                <span>Generate My Custom Plan</span>
+              </button>
+              <button type="button" class="btn ghost" id="plannerScrollToContact">
+                <span>Talk to the Team</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div id="planSummaryCard" class="card" style="margin-top:14px;display:none;">
+          <h4 style="margin-top:0;color:var(--gold-soft);">Your Custom Trishakti Plan</h4>
+          <pre id="planSummaryText" class="muted" style="white-space:pre-wrap;font-size:0.9rem;"></pre>
+
+          <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+            <button type="button" class="btn ghost" id="copyPlanBtn">Copy Plan</button>
+            <button type="button" class="btn primary" id="usePlanInFormBtn">Use in Contact Form</button>
+          </div>
+          <p class="muted" style="margin-top:6px;font-size:0.8rem;">
+            Tip: When you click “Use in Contact Form”, this plan is automatically pasted into the
+            proposal request box so our team can respond with a detailed quote.
+          </p>
         </div>
       </section>
 
@@ -185,82 +268,78 @@
         </div>
       </section>
 
-      <!-- ================= PAYMENT (LIVE-READY) ================= -->
-<section id="payment" class="section payment-section">
-  <h3 style="margin-top:22px;color:var(--gold-soft);">Secure Advance Booking</h3>
-  <p class="muted">
-    Block your date with a safe, online advance payment. All transactions are processed
-    through trusted payment gateways (Razorpay / Stripe / Bank UPI). Your card details
-    are never stored on our servers.
-  </p>
-
-  <div class="payment-grid">
-    <!-- LEFT: BOOKING FORM -->
-    <div class="card payment-left">
-      <div class="payment-badge">
-        <span>🔒</span><span>100% Secure Checkout</span>
-      </div>
-
-      <p class="payment-warning">
-        For your safety, Trishakti Events does not store card or UPI details. You will
-        be redirected to our certified payment partner to complete the transaction.
-      </p>
-
-      <form id="paymentForm" style="margin-top:14px;">
-        <label for="payerName">Full name</label>
-        <input id="payerName" name="payerName" type="text" required placeholder="Riya Sharma">
-
-        <label for="payerEmail" style="margin-top:10px;">Email</label>
-        <input id="payerEmail" name="payerEmail" type="email" required placeholder="you@example.com">
-
-        <label for="payerPhone" style="margin-top:10px;">WhatsApp / Mobile</label>
-        <input id="payerPhone" name="payerPhone" type="tel" required placeholder="+91-98XXXXXXXX">
-
-        <label for="package" style="margin-top:10px;">Package</label>
-        <select id="package" name="package" required>
-          <option value="royal">Luxury Royal</option>
-          <option value="premium">Premium Banarasi Heritage</option>
-          <option value="standard">Standard (Partner)</option>
-        </select>
-
-        <label for="eventDate" style="margin-top:10px;">Event date</label>
-        <input id="eventDate" name="eventDate" type="date" required>
-
-        <label for="amount" style="margin-top:10px;">Advance Amount (₹)</label>
-        <input id="amount" name="amount" type="number" min="1000" step="500" required placeholder="50000">
-
-        <div style="margin-top:18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-          <!-- Important: type="button" so JS (Razorpay/Stripe) can handle it -->
-          <button class="btn primary" type="button" id="payNowButton">
-            <span>Pay Securely &amp; Block Date</span>
-          </button>
-          <span class="muted" style="font-size:0.8rem;">
-            UPI • Cards • Netbanking • Wallets supported via our payment partner.
-          </span>
-        </div>
-      </form>
-    </div>
-
-    <!-- RIGHT: TRUST & INFO -->
-    <div class="payment-right">
-      <div class="card" style="height:100%;">
-        <h4 style="margin-top:0;color:var(--gold-soft);">What happens after you pay?</h4>
-        <ol class="muted" style="font-size:0.85rem;padding-left:18px;">
-          <li>You are redirected to our secure payment partner (Razorpay / Stripe).</li>
-          <li>You complete the payment using UPI, card, netbanking or wallet.</li>
-          <li>Once successful, your booking is logged in our system with a unique ID.</li>
-          <li>You receive a confirmation on email / WhatsApp with all booking details.</li>
-          <li>Our team contacts you within 24 hours to discuss finer details of your event.</li>
-        </ol>
-        <p class="muted" style="margin-top:8px;font-size:0.8rem;">
-          We use PCI-DSS compliant gateways. Your card and UPI information never touches
-          our website, database, Google Sheets or email.
+      <!-- ================= PAYMENT (DEMO) ================= -->
+      <section id="payment" class="section payment-section">
+        <h3 style="margin-top:22px;color:var(--gold-soft);">Secure Advance Booking</h3>
+        <p class="muted">
+          Block your date with a safe, online advance payment. All transactions are processed
+          through trusted payment gateways (Razorpay / Stripe / Bank UPI). Your card details
+          are never stored on our servers.
         </p>
-      </div>
-    </div>
-  </div>
-</section>
 
+        <div class="payment-grid">
+          <div class="card payment-left">
+            <div class="payment-badge">
+              <span>🔒</span><span>100% Secure Checkout</span>
+            </div>
+
+            <p class="payment-warning">
+              For your safety, Trishakti Events does not store card or UPI details. You will
+              be redirected to our certified payment partner to complete the transaction.
+            </p>
+
+            <form id="paymentForm" style="margin-top:14px;">
+              <label for="payerName">Full name</label>
+              <input id="payerName" name="payerName" type="text" required placeholder="Riya Sharma">
+
+              <label for="payerEmail" style="margin-top:10px;">Email</label>
+              <input id="payerEmail" name="payerEmail" type="email" required placeholder="you@example.com">
+
+              <label for="payerPhone" style="margin-top:10px;">WhatsApp / Mobile</label>
+              <input id="payerPhone" name="payerPhone" type="tel" required placeholder="+91-98XXXXXXXX">
+
+              <label for="package" style="margin-top:10px;">Package</label>
+              <select id="package" name="package" required>
+                <option value="royal">Luxury Royal</option>
+                <option value="premium">Premium Banarasi Heritage</option>
+                <option value="standard">Standard (Partner)</option>
+              </select>
+
+              <label for="eventDate" style="margin-top:10px;">Event date</label>
+              <input id="eventDate" name="eventDate" type="date" required>
+
+              <label for="amount" style="margin-top:10px;">Advance Amount (₹)</label>
+              <input id="amount" name="amount" type="number" min="1000" step="500" required placeholder="50000">
+
+              <div style="margin-top:18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                <button class="btn primary" type="submit" id="payNowButton">
+                  <span>Pay Securely &amp; Block Date (Demo)</span>
+                </button>
+                <span class="muted" style="font-size:0.8rem;">
+                  UPI • Cards • Netbanking • Wallets supported via our payment partner.
+                </span>
+              </div>
+            </form>
+          </div>
+
+          <div class="payment-right">
+            <div class="card" style="height:100%;">
+              <h4 style="margin-top:0;color:var(--gold-soft);">What happens after you pay?</h4>
+              <ol class="muted" style="font-size:0.85rem;padding-left:18px;">
+                <li>You are redirected to our secure payment partner (Razorpay / Stripe).</li>
+                <li>You complete the payment using UPI, card, netbanking or wallet.</li>
+                <li>Once successful, your booking is logged in our system with a unique ID.</li>
+                <li>You receive a confirmation on email / WhatsApp with all booking details.</li>
+                <li>Our team contacts you within 24 hours to discuss finer details of your event.</li>
+              </ol>
+              <p class="muted" style="margin-top:8px;font-size:0.8rem;">
+                We use PCI-DSS compliant gateways. Your card and UPI information never touches
+                our website, database, Google Sheets or email.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- ================= CONTACT ================= -->
       <section id="contact" class="section">
@@ -287,7 +366,7 @@
 
             <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
               <button class="btn primary" type="submit">Request Proposal</button>
-              <button class="btn ghost" type="button" id="attachBrochure">Attach Brochure</button>
+              <button class="btn ghost" type="button" id="attachBrochure">Attach Brochure Note</button>
             </div>
           </form>
 
@@ -325,8 +404,8 @@
     <div class="assistant-header">
       <div class="assistant-badge">AI</div>
       <div style="flex:1">
-        <h4>Trishakti Assistant</h4>
-        <div style="font-size:0.85rem;color:var(--muted);">Ask about services, rituals, venue tips — or just say hello.</div>
+        <h4>✨ Trishakti AI — Ask Anything</h4>
+        <div style="font-size:0.85rem;color:var(--muted);">Ask about weddings, rituals, venues, pricing or planning tips.</div>
       </div>
       <button id="assistantClose" aria-label="Close assistant" style="background:transparent;border:0;color:var(--muted);cursor:pointer;font-size:1rem;">✕</button>
     </div>
@@ -334,7 +413,7 @@
     <div class="assistant-body" id="assistantBody" aria-live="polite"></div>
 
     <div class="assistant-controls">
-      <input id="assistantInput" type="text" placeholder="Type your question..." aria-label="Assistant question" style="flex:1">
+      <input id="assistantInput" type="text" placeholder="Type or use mic..." aria-label="Assistant question" style="flex:1">
       <button class="mic-btn" id="micBtn" title="Use microphone (Alt + M)">🎙</button>
       <button class="btn primary" id="askBtn" type="button">Ask</button>
     </div>
